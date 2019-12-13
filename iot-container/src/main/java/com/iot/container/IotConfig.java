@@ -50,12 +50,6 @@ public class IotConfig {
         private int revBufSize = 32 * 1024;
     
         /**
-         *Socket参数，服务端接受连接的队列长度，如果队列已满，客户端连接将被拒绝。默认值
-         * 这里默认设置 128
-         */
-        private int backlog = 128;
-        
-        /**
          *  Socket参数，连接保活，默认值为False。启用该功能时，TCP会主动探测空闲连接的有效性。可以将此功能视为TCP的心跳机制，
          *  需要注意的是：默认的心跳间隔是7200s即2小时。Netty默认关闭该功能。
          */

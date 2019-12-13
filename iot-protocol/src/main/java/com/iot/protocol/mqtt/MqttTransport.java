@@ -53,7 +53,6 @@ public class MqttTransport extends ProtocolTransport {
                 .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                 .option(ChannelOption.SO_KEEPALIVE, config.isKeepAlive())
                 .option(ChannelOption.TCP_NODELAY, config.isNoDelay())
-                .option(ChannelOption.SO_BACKLOG, config.getBacklog())
                 .option(ChannelOption.SO_RCVBUF, config.getRevBufSize())
                 .option(ChannelOption.SO_SNDBUF, config.getSendBufSize())
                 ;

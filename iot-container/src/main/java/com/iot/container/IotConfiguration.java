@@ -54,7 +54,6 @@ public class IotConfiguration implements ApplicationContextAware {
                 .heart(iotConfig.getServer().getHeart())
                 .log(iotConfig.getServer().isLog())
                 .protocol(iotConfig.getServer().getProtocol())
-                .backlog(iotConfig.getServer().getBacklog())
                 .revBufSize(iotConfig.getServer().getRevBufSize())
                 .sendBufSize(iotConfig.getServer().getSendBufSize())
                 .noDelay(iotConfig.getServer().isNoDelay())

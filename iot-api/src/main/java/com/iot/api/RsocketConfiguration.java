@@ -33,7 +33,6 @@ public interface RsocketConfiguration {
     
     int getRevBufSize();
     
-    int getBacklog();
 
 
 }

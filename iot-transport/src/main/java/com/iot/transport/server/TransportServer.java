@@ -62,10 +62,6 @@ public class TransportServer  {
             return this;
         }
     
-        public TransportServer.TransportBuilder backlog(int  length){
-            config.setBacklog(length);
-            return this;
-        }
         public TransportServer.TransportBuilder sendBufSize(int  size){
             config.setSendBufSize(size);
             return this;
