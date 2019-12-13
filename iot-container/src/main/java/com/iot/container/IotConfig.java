@@ -2,6 +2,7 @@ package com.iot.container;
 
 
 import com.iot.common.annocation.ProtocolType;
+import com.iot.container.client.MqttPayloadDecodeMethod;
 import io.netty.handler.codec.mqtt.MqttQoS;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -117,8 +118,11 @@ public class IotConfig {
          *  Netty默认禁用该算法，从而最小化报文传输延时
          */
         private boolean noDelay = true;
-
-
+        /**
+         * 客户端支持解码配置，默认使用JSON
+         */
+        private MqttPayloadDecodeMethod decodeMethod = MqttPayloadDecodeMethod.JSON;
+        
         private Consumer<Throwable> throwableConsumer;
 
         private BiConsumer<String,byte[]> messageAcceptor;
