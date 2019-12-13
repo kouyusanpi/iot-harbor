@@ -1,7 +1,6 @@
 package com.iot.api;
 
 import com.iot.common.message.TransportMessage;
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.mqtt.*;
 import lombok.Getter;
@@ -63,7 +62,11 @@ public class TransportConnection implements Disposable {
     public void addTopic(String topic){
         topics.add(topic);
     }
-
+    
+    public void addTopics(List<String> topics){
+        this.topics.addAll(topics);
+    }
+    
     public void removeTopic(String topic){
         topics.remove(topic);
     }

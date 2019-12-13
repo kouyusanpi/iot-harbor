@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -26,6 +27,11 @@ public class RsocketClientConfig implements RsocketConfiguration {
     private boolean log;
 
     private boolean ssl;
+    
+    /**
+     * 客户端 启动 sub topic
+     */
+    private List<String> subTopics;
     
     /**
      * 发送缓冲区大小

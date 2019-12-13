@@ -33,16 +33,16 @@ public class SubHandler implements DirectHandler {
                         String topic = m.topicName();
                         topicManager.addTopicConnection(topic, connection);
                         serverConfig.getMessageHandler().getRetain(topic)
-                                .ifPresent(reatinMessages ->
-                                        reatinMessages.forEach(reatinMessage -> {
-                                            if (reatinMessage.getQos() == 0) {
-                                                connection.write(MqttMessageApi.buildPub(reatinMessage.isDup(), MqttQoS.valueOf(reatinMessage.getQos()), reatinMessage.isRetain(), 1, reatinMessage.getTopicName(), Unpooled.wrappedBuffer(reatinMessage.getCopyByteBuf()))).subscribe();
+                                .ifPresent(retainMessages ->
+                                        retainMessages.forEach(retainMessage -> {
+                                            if (retainMessage.getQos() == 0) {
+                                                connection.write(MqttMessageApi.buildPub(retainMessage.isDup(), MqttQoS.valueOf(retainMessage.getQos()), retainMessage.isRetain(), 1, retainMessage.getTopicName(), Unpooled.wrappedBuffer(retainMessage.getCopyByteBuf()))).subscribe();
                                             } else {
                                                 int id = connection.messageId();
                                                 connection.addDisposable(id, Mono.fromRunnable(() ->
-                                                        connection.write(MqttMessageApi.buildPub(true, header.qosLevel(), header.isRetain(), id, reatinMessage.getTopicName(), Unpooled.wrappedBuffer(reatinMessage.getCopyByteBuf()))).subscribe())
+                                                        connection.write(MqttMessageApi.buildPub(true, header.qosLevel(), header.isRetain(), id, retainMessage.getTopicName(), Unpooled.wrappedBuffer(retainMessage.getCopyByteBuf()))).subscribe())
                                                         .delaySubscription(Duration.ofSeconds(10)).repeat().subscribe()); // retry
-                                                MqttPublishMessage publishMessage = MqttMessageApi.buildPub(false, header.qosLevel(), header.isRetain(), id, reatinMessage.getTopicName(), Unpooled.wrappedBuffer(reatinMessage.getCopyByteBuf())); // pub
+                                                MqttPublishMessage publishMessage = MqttMessageApi.buildPub(false, header.qosLevel(), header.isRetain(), id, retainMessage.getTopicName(), Unpooled.wrappedBuffer(retainMessage.getCopyByteBuf())); // pub
                                                 connection.write(publishMessage).subscribe();
                                             }
                                         }));

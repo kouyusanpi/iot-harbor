@@ -2,12 +2,12 @@ package com.iot.transport.client;
 
 
 import com.iot.api.client.RsocketClientSession;
-import com.iot.config.RsocketClientConfig;
 import com.iot.common.annocation.ProtocolType;
-import com.iot.transport.server.TransportServer;
+import com.iot.config.RsocketClientConfig;
 import io.netty.handler.codec.mqtt.MqttQoS;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -46,6 +46,13 @@ public class TransportClient {
             config.setHeart(heart);
             return this;
         }
+    
+        public TransportBuilder subTopics(List<String> topics){
+            config.setSubTopics(topics);
+            return this;
+        }
+        
+        
         public TransportBuilder onClose(Runnable onClose){
             config.setOnClose(onClose);
             return this;

@@ -2,12 +2,12 @@ package com.iot.container;
 
 
 import com.iot.common.annocation.ProtocolType;
-import com.iot.config.RsocketClientConfig;
 import io.netty.handler.codec.mqtt.MqttQoS;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -89,7 +89,11 @@ public class IotConfig {
 
         private boolean ssl;
     
-    
+        /**
+         * 客户端 启动 sub topic
+         */
+        private List<String> subTopics;
+        
         /**
          * 发送缓冲区大小
          * 默认 32k

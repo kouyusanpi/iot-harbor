@@ -37,6 +37,9 @@ public class RsocketClientConnection implements RsocketClientSession {
     }
 
     public void  initHandler(){
+        
+        connection.addTopics(clientConfig.getSubTopics());
+        
         RsocketClientConfig.Options options = clientConfig.getOptions();
         NettyInbound inbound = connection.getInbound();
         Disposable disposable=Mono.fromRunnable(() -> connection.write(MqttMessageApi.buildConnect(
@@ -133,6 +136,7 @@ public class RsocketClientConnection implements RsocketClientSession {
         return Mono.fromRunnable(() -> clientConfig.setMessageAcceptor(messageAcceptor));
     }
 
+    
     @Override
     public void dispose() {
         connection.dispose();

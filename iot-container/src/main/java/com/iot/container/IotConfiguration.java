@@ -4,7 +4,6 @@ package com.iot.container;
 import com.iot.api.RsocketMessageHandler;
 import com.iot.api.client.RsocketClientSession;
 import com.iot.api.server.RsocketServerSession;
-import com.iot.common.annocation.ProtocolType;
 import com.iot.transport.client.TransportClient;
 import com.iot.transport.server.TransportServer;
 import org.springframework.beans.BeansException;
@@ -16,10 +15,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import reactor.netty.ConnectionObserver;
 
 import java.util.Optional;
-import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
@@ -81,6 +78,7 @@ public class IotConfiguration implements ApplicationContextAware {
                 .heart(client.getHeart())
                 .protocol(client.getProtocol())
                 .ssl(client.isSsl())
+                .subTopics(iotConfig.getClient().getSubTopics())
                 .log(client.isLog())
                 .clientId(client.getOption().getClientIdentifier())
                 .password(client.getOption().getPassword())
