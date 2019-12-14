@@ -11,10 +11,4 @@ import java.lang.annotation.*;
 public @interface TopicHandler
 {
     String topic() default "";
-    
-    /**
-     * 默认使用JSON序列化
-     * @return
-     */
-    MqttPayloadDecodeMethod decodeMethod() default MqttPayloadDecodeMethod.JSON;
 }

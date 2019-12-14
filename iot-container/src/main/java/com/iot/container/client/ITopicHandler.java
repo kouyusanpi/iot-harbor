@@ -1,6 +1,8 @@
 package com.iot.container.client;
 
-public interface ITopicHandler<T,R>
+public interface ITopicHandler<T>
 {
-    R handle(T t) throws Exception;
+    T decode(byte[] data);
+    
+    byte[]  handle(T t) throws Exception;
 }

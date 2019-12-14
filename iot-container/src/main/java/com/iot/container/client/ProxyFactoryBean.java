@@ -13,8 +13,7 @@ public class ProxyFactoryBean<T> implements FactoryBean<T>
     @Resource
     private ApplicationContext applicationContext;
     
-    @Resource
-    private HandlerFactory handlerFactory;
+    private HandlerFactory handlerFactory = HandlerFactory.getInstance();
 
     
     public ProxyFactoryBean() {
@@ -26,7 +25,7 @@ public class ProxyFactoryBean<T> implements FactoryBean<T>
         this.rpcInterface = rpcInterface;
         try
         {
-            handlerFactory.putHanlder(getName(),rpcInterface.newInstance());
+            handlerFactory.putHandler(getName(),rpcInterface.newInstance());
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -44,7 +43,7 @@ public class ProxyFactoryBean<T> implements FactoryBean<T>
     @Override
     public T getObject() throws Exception
     {
-        return (T)handlerFactory.getHanlder(getName());
+        return (T)handlerFactory.getHandler(getName());
     }
     
     private String getName()

@@ -1,0 +1,16 @@
+message register
+{
+     string requestId=1;
+     string deviceId=2;
+     string location=3;
+     string appVersion = 4;
+     int32 deviceType = 5;
+     string deviceBrand = 6;
+     string deviceModel = 7;
+     string systemVersion = 8;
+     string deviceCode = 9;
+     string requestVersion = 10;
+     string ip = 11;
+     string channel = 12;
+     string extend = 13;
+}

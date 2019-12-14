@@ -4,6 +4,7 @@ package com.iot.container;
 import com.iot.api.RsocketMessageHandler;
 import com.iot.api.client.RsocketClientSession;
 import com.iot.api.server.RsocketServerSession;
+import com.iot.container.client.ClientMessageAcceptor;
 import com.iot.container.client.HandlerFactory;
 import com.iot.container.client.TopicHandler;
 import com.iot.transport.client.TransportClient;
@@ -115,16 +116,10 @@ public class IotConfiguration implements ApplicationContextAware
     }
     
     @Bean
-    public ClientMessageAcceptor messageAcceptor()
+    public ClientMessageAcceptor clientMessageAcceptorInit()
     {
         return new ClientMessageAcceptor();
     }
     
-    @Bean
-    @ConditionalOnMissingBean(HandlerFactory.class)
-    public HandlerFactory handlerFactory()
-    {
-        return new HandlerFactory();
-    }
     
 }
