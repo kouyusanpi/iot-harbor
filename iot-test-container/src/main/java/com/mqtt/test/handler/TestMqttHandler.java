@@ -4,11 +4,17 @@ import com.iot.container.client.ITopicHandler;
 import com.iot.container.client.MqttPayloadDecodeMethod;
 import com.iot.container.client.TopicHandler;
 import com.mqtt.test.Message;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 @TopicHandler(topic = "test")
 public class TestMqttHandler implements ITopicHandler<byte[]>
 {
+    
+    @Resource
+    private ApplicationContext applicationContext;
     
     @Override
     public byte[] decode(byte[] data)

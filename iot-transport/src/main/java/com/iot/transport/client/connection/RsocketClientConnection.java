@@ -37,8 +37,7 @@ public class RsocketClientConnection implements RsocketClientSession {
     }
 
     public void  initHandler(){
-        
-        connection.addTopics(clientConfig.getSubTopics());
+        addSubTopics();
         
         RsocketClientConfig.Options options = clientConfig.getOptions();
         NettyInbound inbound = connection.getInbound();
@@ -67,7 +66,15 @@ public class RsocketClientConnection implements RsocketClientSession {
                 .delaySubscription(Duration.ofSeconds(10)).repeat().subscribe()); // retry
         connection.write(MqttMessageApi.buildSub(messageId, mqttTopicSubscriptions)).subscribe();
     }
-
+    
+    private void addSubTopics()
+    {
+        if(clientConfig.getSubTopics() != null)
+        {
+            connection.addTopics(clientConfig.getSubTopics());
+        }
+    }
+    
     @Override
     public Mono<Void> pub(String topic, byte[] message, boolean retained, int qos) {
         int messageId = qos == 0 ? 1 : connection.messageId();

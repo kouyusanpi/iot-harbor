@@ -47,9 +47,13 @@ public class TopicHandlerRegisterService extends ClassPathBeanDefinitionScanner
                 String beanClassName = definition.getBeanClassName();
                 //把接口的全路径放入ProxyFactoryBean 的构造器中,在构造器中会自动转成 class类型
                 definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName);
+                //definition.get
                 definition.setBeanClass(ProxyFactoryBean.class);
                 //按 照查找Bean的Class的类型
                 definition.setAutowireMode(GenericBeanDefinition.AUTOWIRE_BY_TYPE);
+                
+                
+                //super.registry.registerBeanDefinition();
             } catch (Exception e) {
                 e.printStackTrace();
             }

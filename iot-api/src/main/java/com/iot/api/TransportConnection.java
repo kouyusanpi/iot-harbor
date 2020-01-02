@@ -51,7 +51,7 @@ public class TransportConnection implements Disposable {
     }
 
 
-    public void destory() {
+    public void destroy() {
         concurrentHashMap.values().forEach(Disposable::dispose);
         concurrentHashMap.clear();
         qos2Message.clear();
@@ -91,7 +91,7 @@ public class TransportConnection implements Disposable {
     public int messageId(){
         longAdder.increment();
         int value=longAdder.intValue();
-        if(value==Integer.MAX_VALUE){
+        if(value==Short.MAX_VALUE*2){
             longAdder.reset();
             longAdder.increment();
             return longAdder.intValue();
